@@ -1,0 +1,12 @@
+# Deliberately naive Dockerfile. Built only to compare image size and layers
+# against the optimised Dockerfile. Do not deploy this one.
+#   - Full node:24 image (Debian with build tools)
+#   - Copies everything before installing, so any code change reinstalls all packages
+#   - npm install instead of npm ci, with the npm cache left inside the image
+#   - Runs as root, no health check
+FROM node:24
+WORKDIR /app
+COPY . .
+RUN npm install
+EXPOSE 3000
+CMD ["npm", "start"]
