@@ -2,15 +2,15 @@
 
 Rahul Raju (105143065). SWE40006 Software Deployment and Evolution, Semester 2 2026.
 
-Declared target level: Task 4.3 (Distinction).
+Two containerised web applications and the scripts used to deploy them to an Amazon Linux 2023 EC2 host.
 
 ## Contents
 
-| Folder | Level | What it is |
-|---|---|---|
-| `credit-flask-app/` | 4.2 Credit | Flask app served by Gunicorn. Shows which host and container it is running on |
-| `distinction-notes-board/` | 4.3 Distinction | Express app (Node 24) that stores shift handover notes in a Redis container |
-| `scripts/` | 4.2 and 4.3 | Docker install and deployment scripts for the Amazon Linux 2023 EC2 host |
+| Folder | What it is |
+|---|---|
+| `credit-flask-app/` | Flask app served by Gunicorn. Shows which host and container it is running on |
+| `distinction-notes-board/` | Express app (Node 24) that stores shift handover notes in a Redis container |
+| `scripts/` | Docker install and deployment scripts for the Amazon Linux 2023 EC2 host |
 
 ## Images on Docker Hub
 
@@ -20,13 +20,13 @@ Declared target level: Task 4.3 (Distinction).
 ## Build and run locally
 
 ```bash
-# Credit
+# Flask app
 cd credit-flask-app
 docker build -t swe40006-flask-app:1.0 .
 docker run -d --name flask-app -p 8080:5000 swe40006-flask-app:1.0
 # open http://localhost:8080
 
-# Distinction
+# Notes board
 cd distinction-notes-board
 docker build -t swe40006-notes-board:1.0 .
 docker network create notes-net
@@ -34,6 +34,16 @@ docker run -d --name notes-redis --network notes-net -v notes-data:/data redis:8
 docker run -d --name notes-board --network notes-net -p 8081:3000 -e REDIS_URL=redis://notes-redis:6379 swe40006-notes-board:1.0
 # open http://localhost:8081
 ```
+
+## Deployment scripts
+
+Run on the EC2 host, in this order.
+
+| Script | What it does |
+|---|---|
+| `scripts/ec2-install-docker.sh` | Installs and enables Docker, and adds `ec2-user` to the `docker` group. Reconnect afterwards so the group change takes effect |
+| `scripts/deploy-credit.sh <dockerhub-username>` | Pulls the Flask image and runs it on port 8080 |
+| `scripts/deploy-notes-board.sh <dockerhub-username>` | Creates the `notes-net` network and `notes-data` volume, then runs Redis and the notes board on port 80. Redis stays private to the network |
 
 ## Notes board environment variables
 

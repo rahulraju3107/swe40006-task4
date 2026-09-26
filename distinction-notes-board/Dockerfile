@@ -1,4 +1,4 @@
-# Task 4.3 Distinction: optimised Dockerfile for the Shift Handover Board.
+# Optimised Dockerfile for the Shift Handover Board.
 #
 # What makes it optimised, compared with Dockerfile.unoptimised:
 #   1. Alpine base image instead of the full Debian image (roughly a tenth of the size).
@@ -22,7 +22,7 @@ RUN npm ci --omit=dev
 # ---------- Stage 2: runtime image ----------
 FROM node:24-alpine
 LABEL org.opencontainers.image.title="swe40006-notes-board" \
-      org.opencontainers.image.description="SWE40006 Task 4.3 shift handover board"
+      org.opencontainers.image.description="SWE40006 Task 4 shift handover board"
 
 ENV NODE_ENV=production \
     PORT=3000

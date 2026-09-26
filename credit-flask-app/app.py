@@ -1,4 +1,4 @@
-"""SWE40006 Task 4.2 Credit: a basic Flask web app that reports which host it is running on.
+"""SWE40006 Task 4: a basic Flask web app that reports which host it is running on.
 
 The page shows the container hostname, so the same image can be shown running
 on two different Docker hosts (the Windows PC and the EC2 instance).

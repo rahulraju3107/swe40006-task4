@@ -1,5 +1,5 @@
 #!/bin/bash
-# Task 4.2: pull the Flask image from Docker Hub and run it on the secondary host (EC2).
+# Pull the Flask image from Docker Hub and run it on the secondary host (EC2).
 # Usage: ./deploy-credit.sh <dockerhub-username>
 set -e
 DH="${1:?Usage: ./deploy-credit.sh <dockerhub-username>}"

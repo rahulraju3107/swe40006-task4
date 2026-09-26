@@ -1,4 +1,4 @@
-// SWE40006 Task 4.3 Distinction: Shift Handover Board.
+// SWE40006 Task 4: Shift Handover Board.
 // Express web app that stores handover notes in a separate Redis container.
 // Every setting comes from environment variables, so the same image runs locally and on EC2.
 

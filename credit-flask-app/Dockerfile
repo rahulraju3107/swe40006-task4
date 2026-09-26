@@ -1,4 +1,4 @@
-# Task 4.2 Credit: Flask app packaged with its Python runtime and dependencies.
+# Task 4: Flask app packaged with its Python runtime and dependencies.
 
 # Slim variant of the official Python image. Smaller than the full image but still Debian based.
 FROM python:3.13-slim

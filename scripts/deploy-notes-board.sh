@@ -1,5 +1,5 @@
 #!/bin/bash
-# Task 4.3: run the Shift Handover Board and its Redis store on EC2.
+# Run the Shift Handover Board and its Redis store on EC2.
 # Redis is only reachable on the private notes-net network. Only the web app publishes a port.
 # Usage: ./deploy-notes-board.sh <dockerhub-username>
 set -e
